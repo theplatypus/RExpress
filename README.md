@@ -4,9 +4,10 @@
 
 RExpress is a convenient R wrapper written in node.js, allowing you to build a simple **HTTP API** over your R application.
 To improve reactivity and replicability, RExpress is :
-	- stateless
-	- asynchronous
-	- made of a **pool of active R interpreters** (to avoid interpreter/libraries/data loading on each call)
+
+- stateless
+- asynchronous
+- made of a **pool of active R interpreters** (to avoid interpreter/libraries/data loading on each call)
 
 ## Code Example
 
@@ -48,10 +49,10 @@ The default API exposes two main endpoints :
 
 ### Function call
 
-*POST http://ip:port/R/:function*
+*POST http://ip:port/R/%function%*
 
 Read the form-data arguments given to call the function (replace this parameter with the actual function name).
-Users action is therefore limited to this function scope.
+Users actions are therefore restricted to this particular function scope.
 
 ```javascript
 // api.js
@@ -77,6 +78,21 @@ Testing purposes only, do not use in production.
 	// ...
 })
 ```
+## Tweaking
+
+There are two main ways to adapt this package towards your needs.
+
+### Pool size
+
+To avoid interpreter/libraries/data loading on each call, several interpreters are maintained in an active state in a pool.
+Each call results in a pipe with one of those interpreters.
+As R is single-threaded by default, you could choose to create as many worker as your CPU exposes threads.
+
+To tweak this parameter, change the *nb parameter* at the pool creation in api.js
+
+### Custom Scripts
+
+If the workers should have data or libraries preloaded, you can store them in .R files and save them in the /R folder.
 
 ## Tests
 
