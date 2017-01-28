@@ -12,16 +12,21 @@ To improve reactivity and replicability, RExpress is :
 
 ```bash
 # SERVER
-# -- assuming R is installed
+
+# -- assuming R is installed 
+#    and your custom preload scripts are in /R folder
 node ./api.js
 
 # CLIENT
+
 # -- execute a script given in body
 curl -X POST -H "Cache-Control: no-cache" -d \
 'a <- "Hello World"\n a \n' "http://127.0.0.1/R/"
 > [1] "Hello World"
+
 # -- call 'qnorm' built-in function (value at the p percentile of normal distribution)
-curl -X POST -H "Cache-Control: no-cache" -H "Content-Type: multipart/form-data; " -F "p=.42" "http://127.0.0.1/R/qnorm"
+curl -X POST -H "Cache-Control: no-cache" -H "Content-Type: multipart/form-data; "\
+-F "p=.42" "http://127.0.0.1/R/qnorm"
 > [1] -0.2018935
 ```
 
@@ -41,31 +46,37 @@ node ./api.js
 
 The default API exposes two main endpoints :
 
+### Function call
+
+*POST http://ip:port/R/:function*
+
+Read the form-data arguments given to call the function (replace this parameter with the actual function name).
+Users action is therefore limited to this function scope.
+
 ```javascript
 // api.js
 // call a function w/ form-data (safe)
 .post('/R/:function', upload.array(), function (request, response) {
-
-	// ...
-})
-// execute the R program given in body
-// -- very unsafe but useful in testing purposes
-.post('/R', text_parser, function (request, response) {
-
 	// ...
 })
 ```
 
-**Function call**
-*POST http://ip:port/R/:function*
-Read the form-data arguments given to call the function (replace this parameter with the actual function name).
-Users action is therefore limited to this function scope.
+### Script execute
 
-**Script execute**
- *POST http://ip:port/R*
+*POST http://ip:port/R*
+ 
 Interpret the whole POST body as a R program to execute.
 As you imagine, it is very unsafe to do that, especially if your program have access to some data.
 Testing purposes only, do not use in production.
+
+```javascript
+
+// execute the R program given in body
+// -- very unsafe but useful in testing purposes
+.post('/R', text_parser, function (request, response) {
+	// ...
+})
+```
 
 ## Tests
 
