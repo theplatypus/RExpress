@@ -101,6 +101,7 @@ test is for the weak
 ## Issues and roadmap
 
 - multi response calls (normal distribution for example)
+- implement R/ folder automatic reading
 
 ## Contributors
 
