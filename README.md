@@ -2,34 +2,38 @@
 
 ## Synopsis
 
-RExpress is a convenient R wrapper written in node.js, allowing you to build a simple **HTTP API** over your R application.
+RExpress is a *convenient*, *minimalist* and **fast** R wrapper written in node.js, on top of Express, allowing you to build a simple **HTTP API** over your R application.
+
 To improve reactivity and replicability, RExpress is :
 
 - stateless
 - asynchronous
-- made of a **pool of active R interpreters** (to avoid interpreter/libraries/data loading on each call)
+- made of a *pool of active R interpreters* (to avoid interpreter/libraries/data loading on each call)
 
 ## Code Example
 
 ```bash
 # SERVER
 
-# -- assuming R is installed 
+# -- assuming R is installed
 #    and your custom preload scripts are in /R folder
 node ./api.js
 
 # CLIENT
 
 # -- execute a script given in body
-curl -X POST -H "Cache-Control: no-cache" -d \
-'a <- "Hello World"\n a \n' "http://127.0.0.1/R/"
+curl -X POST -d 'a <- "Hello World"\n a \n' "http://127.0.0.1/R/"
 > [1] "Hello World"
 
 # -- call 'qnorm' built-in function (value at the p percentile of normal distribution)
-curl -X POST -H "Cache-Control: no-cache" -H "Content-Type: multipart/form-data; "\
--F "p=.42" "http://127.0.0.1/R/qnorm"
+curl -X POST -H "Content-Type: multipart/form-data; " -F "p=.42" "http://127.0.0.1/R/qnorm"
 > [1] -0.2018935
 ```
+
+Below an example in Postman, for a function returning several values.
+
+![rnorm](./rnorm.png)
+
 
 ## Installation
 
@@ -65,7 +69,7 @@ Users actions are therefore restricted to this particular function scope.
 ### Script execute
 
 *POST http://ip:port/R*
- 
+
 Interpret the whole POST body as a R program to execute.
 As you imagine, it is very unsafe to do that, especially if your program have access to some data.
 Testing purposes only, do not use in production.
@@ -97,6 +101,8 @@ If the workers should have data or libraries preloaded, you can store them in .R
 ## Tests
 
 test is for the weak
+
+> just kidding, I wait for 0.1.x at least
 
 ## Issues and roadmap
 
