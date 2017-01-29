@@ -1,6 +1,6 @@
 {
   "name": "rexpress",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "description": "RExpress is a convenient R wrapper written in node.js, allowing you to build a simple **HTTP API** over your R application.",
   "main": "api.js",
   "dependencies": {
