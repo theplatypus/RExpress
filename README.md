@@ -47,8 +47,10 @@ Below an example in Postman, for a function returning several values.
 # clone repo
 git clone theplatypus/RExpress
 cd RExpress
+
 npm install
 
+cd ./lib
 node ./api.js
 
 ```
