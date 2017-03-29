@@ -38,7 +38,7 @@ curl -X POST -H "Content-Type: multipart/form-data; " -F "x=24" -F "y=42" "http:
 
 Below an example in Postman, for a function returning several values.
 
-![rnorm](./rnorm.png)
+![rnorm](../rnorm.png)
 
 
 ## Installation
