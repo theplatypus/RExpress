@@ -106,12 +106,24 @@ To tweak this parameter, change the *nb parameter* at the pool creation in api.j
 
 If the workers should have data or libraries preloaded, you can store them in .R files and save them in the /R folder.
 
-## Tests
+## Docker
 
-test is for the weak
+You can use the Dockerfile to build a container with necessaries dependencies.
 
-> just kidding, I wait for 0.1.x at least
+```bash
+# clone repo
+git clone theplatypus/RExpress
+cd RExpress
 
+# build image
+docker build -t seed/RExpress .
+
+# run image in a container
+docker run -p 8080:80 seed/RExpress
+
+# access RExpress at 192.168.99.100:8080 (your docker bridge0 addr)
+
+```
 ## Issues and roadmap
 
 - deal with long scripts (automatic cut in several jobs)
