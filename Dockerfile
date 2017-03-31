@@ -23,7 +23,7 @@ RUN update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10
 
 
 # ---- install R:latest from CRAN repos
-CMD cat "deb http://cran.rstudio.com/bin/linux/debian jessie-cran3/" >> /etc/apt/sources.list
+RUN /bin/echo "deb http://cran.rstudio.com/bin/linux/debian jessie-cran3/" >> /etc/apt/sources.list
 
 RUN \
     apt-get update && \
