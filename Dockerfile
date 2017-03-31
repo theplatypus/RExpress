@@ -27,7 +27,7 @@ RUN /bin/echo "deb http://cran.rstudio.com/bin/linux/debian jessie-cran3/" >> /e
 
 RUN \
     apt-get update && \
-    apt-get install -y r-base r-base-dev
+    apt-get install -y --force-yes r-base r-base-dev
 
 # ---- RExpress
 RUN mkdir /srv/RExpress
