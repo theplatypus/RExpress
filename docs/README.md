@@ -38,7 +38,7 @@ curl -X POST -H "Content-Type: multipart/form-data; " -F "x=24" -F "y=42" "http:
 
 Below an example in Postman, for a function returning several values.
 
-![rnorm](./rnorm.png)
+![rnorm](../rnorm.png)
 
 
 ## Installation
@@ -106,24 +106,12 @@ To tweak this parameter, change the *nb parameter* at the pool creation in api.j
 
 If the workers should have data or libraries preloaded, you can store them in .R files and save them in the /R folder.
 
-## Docker
+## Tests
 
-You can use the Dockerfile to build a container with necessaries dependencies.
+test is for the weak
 
-```bash
-# clone repo
-git clone theplatypus/RExpress
-cd RExpress
+> just kidding, I wait for 0.1.x at least
 
-# build image
-docker build -t seed/RExpress .
-
-# run image in a container
-docker run -p 8080:80 seed/RExpress
-
-# access RExpress at 192.168.99.100:8080 (your docker bridge0 addr)
-
-```
 ## Issues and roadmap
 
 - deal with long scripts (automatic cut in several jobs)
