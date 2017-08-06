@@ -51,7 +51,8 @@ cd RExpress
 npm install
 
 cd ./lib
-node ./api.js
+node ./api.js 	# nb_workers = 4 * nb_threads
+node ./api.js 4 # 4 workers
 
 ```
 
@@ -119,7 +120,10 @@ cd RExpress
 docker build -t seed/RExpress .
 
 # run image in a container
-docker run -p 8080:80 seed/RExpress
+docker run \
+	-p 8080:80 \
+	--env NB_WORKERS="4" \
+	seed/RExpress
 
 # access RExpress at 192.168.99.100:8080 (your docker bridge0 addr)
 
