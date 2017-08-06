@@ -36,6 +36,6 @@ WORKDIR /srv/RExpress
 
 RUN npm install
 WORKDIR /srv/RExpress/lib
-CMD node ./api.js
+CMD ["sh", "-c", "node ./api.js ${NB_WORKERS}"]
 
 EXPOSE 80
