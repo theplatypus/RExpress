@@ -8,10 +8,9 @@
     "express": "^4.14.1",
     "multer": "^1.3.0"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "scripts": {
-	"start" : "cd ./lib && node api.js"
+    "start": "cd ./lib && node api.js"
   },
   "repository": {
     "type": "git",
